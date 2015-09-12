@@ -1,3 +1,3 @@
-import SelectList from 'ember-select-list/addon/components/select-list';
+import SelectList from 'ember-select-list/components/select-list';
 
 export default SelectList;

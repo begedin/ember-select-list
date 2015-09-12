@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('string-array');
+  this.route('object-array');
+  this.route('two-way');
 });
 
 export default Router;
