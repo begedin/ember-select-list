@@ -1,0 +1,9 @@
+{{select-list content=model optionLabelPath='label' optionValuePath='value' value=value action=(action (mut value))}}
+
+<p>{{value}}</p>
+
+<p>
+  {{#each model as |item|}}
+    <button {{action 'setSelection' item.value}}>Set to {{item.label}}</button>
+  {{/each}}
+</p>

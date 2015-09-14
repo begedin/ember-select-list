@@ -8,7 +8,10 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('string-array');
   this.route('object-array');
-  this.route('two-way');
+  this.route('two-way-object-array');
+  this.route('two-way-string-array');
+  this.route('prompt-string-array');
+  this.route('prompt-object-array');
 });
 
 export default Router;
