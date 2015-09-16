@@ -1,9 +1,0 @@
-{{select-list content=model optionLabelPath='content.label' optionValuePath='content.value' value=selectedValue}}
-
-<p>{{selectedValue}}</p>
-
-<p>
-  {{#each model as |item|}}
-    <button {{action 'setSelection' item.value}}>Set to {{item.label}}</button>
-  {{/each}}
-</p>

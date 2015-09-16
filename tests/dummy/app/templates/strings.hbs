@@ -1,0 +1,39 @@
+<h3>Strings</h3>
+
+<section>
+  <h4>One way</h4>
+
+  {{select-list content=model value=oneWayValue}}
+
+  <p><strong>Selected value in controller:</strong> {{oneWayValue}}</p>
+
+  <p>However, you can set the value of the dropdown from the controller...</p>
+
+  <p>
+    {{#each model as |item|}}
+      <button {{action 'setOneWayValue' item}}>Set to {{item}}</button>
+    {{/each}}
+  </p>
+</section>
+
+<section>
+<h4>Two way</h4>
+
+  {{select-list content=model value=twoWayValue action=(action (mut twoWayValue))}}
+
+  <p>Try changing the dropdown value again...</p>
+  <p><strong>Selected value in controller:</strong> {{twoWayValue}}</p>
+  <p>Setting the value from the controller still works as well...</p>
+  <p>
+    {{#each model as |item|}}
+      <button {{action 'setSelection' item}}>Set to {{item}}</button>
+    {{/each}}
+  </p>
+</section>
+
+<section>
+  <h4>Prompt</h4>
+  {{select-list content=model value=promptValue prompt="Select a value..."}}
+
+  <p>Finally, you can also set a prompt which is not selectable...</p>
+</section>

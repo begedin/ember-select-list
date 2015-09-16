@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
+<header>
+  <h2 id="title">Welcome to Ember</h2>
+  <ul class="nav">
+    <li>{{#link-to 'strings'}}String{{/link-to}}</li>
+    <li>{{#link-to 'objects'}}Object{{/link-to}}</li>
+  </ul>
+</header>
 
-{{outlet}}
+<div class="container">{{outlet}}</div>
