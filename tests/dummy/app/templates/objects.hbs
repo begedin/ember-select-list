@@ -1,0 +1,41 @@
+<h3>Objects</h3>
+
+<section>
+  <h4>One way</h4>
+  <p><em>By default, the selected value binding only 'reads down' into the component. Any changes to the property within the component will not propagate up. This follows the ember <strong>data down, actions up</strong> philosophy</em></p>
+
+  {{select-list content=model optionLabelPath='label' optionValuePath='value' value=oneWayValue}}
+
+  <p><strong>Selected value in controller:</strong> {{oneWayValue}}</p>
+
+  <p>However, you can set the value of the dropdown from the controller...</p>
+
+  <p>
+    {{#each model as |item|}}
+      <button {{action 'setOneWayValue' item.value}}>Set to {{item.label}}</button>
+    {{/each}}
+  </p>
+</section>
+
+<section>
+  <h4>Two way</h4>
+  <p><em>Using the new <code>mut</code> helper, however, we are able to recreate the old behavior where selecting something from the dropdown will update the selection property within the component. In order to do this, we bind to the component's action using <code>action=(action (mut value))</code></em></p>
+
+  {{select-list content=model optionLabelPath='label' optionValuePath='value' value=twoWayValue action=(action (mut twoWayValue))}}
+
+  <p>Try changing the dropdown value again...</p>
+  <p><strong>Selected value in controller:</strong> {{twoWayValue}}</p>
+  <p>Setting the value from the controller still works as well...</p>
+  <p>
+    {{#each model as |item|}}
+      <button {{action 'setTwoWayValue' item.value}}>Set to {{item.label}}</button>
+    {{/each}}
+  </p>
+</section>
+
+<section>
+  <h4>Prompt</h4>
+  {{select-list content=model optionLabelPath='label' value=promptValue prompt="Select a value..."}}
+
+  <p>Finally, you can also set a prompt which is not selectable...</p>
+</section>

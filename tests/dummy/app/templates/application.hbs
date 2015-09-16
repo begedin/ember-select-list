@@ -1,10 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
-<ul>
-  <li>{{#link-to 'string-array'}}String array{{/link-to}}</li>
-  <li>{{#link-to 'object-array'}}Object array{{/link-to}}</li>
-  <li>{{#link-to 'two-way-object-array'}}Two-way Objects{{/link-to}}</li>
-  <li>{{#link-to 'two-way-string-array'}}Two-way Strings{{/link-to}}</li>
-  <li>{{#link-to 'prompt-string-array'}}Prompt Strings{{/link-to}}</li>
-  <li>{{#link-to 'prompt-object-array'}}Prompt Objects{{/link-to}}</li>
-</ul>
-{{outlet}}
+<header>
+  <h2 id="title">Welcome to Ember</h2>
+  <ul class="nav">
+    <li>{{#link-to 'strings'}}String{{/link-to}}</li>
+    <li>{{#link-to 'objects'}}Object{{/link-to}}</li>
+  </ul>
+</header>
+
+<div class="container">{{outlet}}</div>

@@ -1,9 +1,0 @@
-{{select-list content=model value=value action=(action (mut value))}}
-
-<p>{{value}}</p>
-
-<p>
-  {{#each model as |item|}}
-    <button {{action 'setSelection' item}}>Set to {{item}}</button>
-  {{/each}}
-</p>
