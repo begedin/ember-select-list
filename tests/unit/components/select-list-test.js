@@ -76,7 +76,7 @@ test('it renders prompt correctly', function(assert) {
   assert.equal(this.$('option').attr('disabled'), 'disabled', 'The prompt option is disabled');
 });
 
-test('it sets both value and text to item when content of simple strings is provided', function(assert) {
+test('it renders properly when content of simple strings is provided', function(assert) {
   assert.expect(2);
 
   var component = this.subject();
@@ -86,6 +86,81 @@ test('it sets both value and text to item when content of simple strings is prov
     component.set('content', ['item']);
   });
 
-  assert.equal(this.$('option').attr('value'), 'item', 'The value of the option is assigned to the content item value');
-  assert.equal(this.$('option').text().trim(), 'item', 'The text of the option is assigned to the content item value');
+  assert.equal(this.$('option').attr('value'), 'item', 'The value of the option is assigned to the content item');
+  assert.equal(this.$('option').text().trim(), 'item', 'The text of the option is assigned to the content item');
+});
+
+test('it does not fail when array of objects is provided as content, but value and label paths are not provided', function(assert) {
+  assert.expect(2);
+
+  var item = { propertyA: 'A property', propertyB: 'Another property' };
+
+  this.subject({ content: [ item ] });
+
+  assert.equal(this.$('option').attr('value'), item, 'The value of the option is assigned to the content item');
+  assert.equal(this.$('option').text().trim(), item, 'The text of the option is assigned to the content item');
+});
+
+test('it renders when provided an array of objects and a label path', function(assert) {
+  assert.expect(2);
+
+  var item = { label: 'A property', value: 'Another property' };
+  this.subject({ content: [ item ], optionLabelPath: 'label' });
+
+  assert.equal(this.$('option').attr('value'), item, 'The value of the option is assigned to the content item');
+  assert.equal(this.$('option').text().trim(), item.label, 'The text of the option is assigned to the content item.label');
+});
+
+test('it renders properly when provided an array of objects and a value path', function(assert) {
+  assert.expect(2);
+
+  var item = { label: 'A property', value: 'Another property' };
+  this.subject({ content: [ item ], optionValuePath: 'value' });
+
+  assert.equal(this.$('option').attr('value'), item.value, 'The value of the option is assigned to the content item');
+  assert.equal(this.$('option').text().trim(), item, 'The text of the option is assigned to the content item.label');
+});
+
+test('it renders properly when provided an array of objects and both label and value paths', function(assert) {
+  assert.expect(2);
+
+  var item = { label: 'A property', value: 'Another property' };
+  this.subject({ content: [ item ], optionValuePath: 'value', optionLabelPath: 'label' });
+
+  assert.equal(this.$('option').attr('value'), item.value, 'The value of the option is assigned to the item.value');
+  assert.equal(this.$('option').text().trim(), item.label, 'The text of the option is assigned to the item.label');
+});
+
+test('it works with deep paths for values', function(assert) {
+  assert.expect(2);
+
+  var subitem = { value: 'A value' };
+  var item = { label: 'A property', value: subitem };
+  this.subject({ content: [ item ], optionValuePath: 'value.value' });
+
+  assert.equal(this.$('option').attr('value'), item.value.value, 'The value of the option is assigned to the item.value.value');
+  assert.equal(this.$('option').text().trim(), item, 'The text of the option is assigned to the content item');
+});
+
+test('it works with deep paths for labels', function(assert) {
+  assert.expect(2);
+
+  var subitem = { label: 'A label' };
+  var item = { label: subitem, value: 'A value' };
+  this.subject({ content: [ item ], optionLabelPath: 'label.label' });
+
+  assert.equal(this.$('option').attr('value'), item, 'The value of the option is assigned to the content item');
+  assert.equal(this.$('option').text().trim(), item.label.label, 'The text of the option is assigned to the item.label.label');
+});
+
+test('it works with deep paths for both labels and values', function(assert) {
+  assert.expect(2);
+
+  var sublabel = { label: 'A label' };
+  var subvalue = { value: 'A value' };
+  var item = { label: sublabel, value: subvalue };
+  this.subject({ content: [ item ], optionLabelPath: 'label.label', optionValuePath: 'value.value' });
+
+  assert.equal(this.$('option').attr('value'), item.value.value, 'The value of the option is assigned to the item.value.value');
+  assert.equal(this.$('option').text().trim(), item.label.label, 'The text of the option is assigned to the item.label.label');
 });
