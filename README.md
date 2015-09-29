@@ -1,25 +1,81 @@
-# Ember-select-list
+# ember-select-list
 
-This README outlines the details of collaborating on this Ember addon.
+ember-select-list is a basic `<select>` component which strives to replace the old `{{view 'select'}}` while following the modern ember paradigm of "data-down-actions-up" as closely as possible.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+* ember install --save-dev ember-select-list
 
-## Running
+## Using the addon
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+A straight replacement of the old select view would be done in the following way.
 
-## Running Tests
+The following handlebars markup
 
-* `ember test`
-* `ember test --server`
+```handlebars
+{{view "select"
+       content=programmers
+       optionValuePath="content.id"
+       optionLabelPath="content.firstName"
+       value=selectedProgrammerId}}
+```
 
-## Building
+can be replaced with
 
-* `ember build`
+```handlebars
+  {{select-list content=programmers
+                optionValuePath='id'
+                optionLabelPath='firstName'
+                value=selectedProgrammerId
+                action=(action (mut selectedProgrammerId))}}
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```
+
+As clear from the markup, the default behavior of the `value` binding is one way. In order to make it two-way, using the `mut` helper is required. Additionally, label and value paths do not require speficying the root element name.
+
+### Nesting is supported
+
+The following syntax for label and value paths is supported and will work.
+
+```handlebars
+{{select-list content=myData
+              optionValuePath='level1.level2.id'
+              optionLabelPath='level1.level2.label'}}
+```
+
+
+### Not specifying a value or label path wil work
+
+This will work
+
+```handlebars
+{{select-list content=myData
+              optionLabelPath='level1.level2.label'}}
+```
+
+As will this
+
+```handlebars
+{{select-list content=myData
+              optionValuePath='level1.level2.id'}}
+```
+
+The corresponding component property will simply be set to the value of the entire selected item in the content array.
+
+### You can use it with a collection of simple strings, or complex objects.
+
+content can be int he format of `['Item A', 'Item B', ...]` or `[ ObjectA, ObjectB, ...]`.
+
+### Instead of using `mut`, you can bind it to any action you want
+
+```handlebars
+  {{select-list content=myData
+                action='myCustomAction'}}
+
+```
+
+The action will be triggered when the selection is changed.
+
+## Ember support
+
+This addon should currently work with ember@1.13.x. It may also work with ember@2.x, but I haven't tested it. Official support for ember@2.x is planned.
