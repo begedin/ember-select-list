@@ -2,9 +2,13 @@
 
 ember-select-list is a basic `<select>` component which strives to replace the old `{{view 'select'}}` while following the modern ember paradigm of "data-down-actions-up" as closely as possible.
 
+## Demo
+
+http://begedin.github.io/ember-select-list
+
 ## Installation
 
-* ember install --save-dev ember-select-list
+* ember install ember-select-list
 
 ## Using the addon
 
