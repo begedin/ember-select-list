@@ -1,6 +1,6 @@
 {
   "name": "ember-select-list",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A basic replacement for the old ember select view, which strives to follow modern ember conventions.",
   "directories": {
     "doc": "doc",
