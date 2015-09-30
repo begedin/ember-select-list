@@ -10,9 +10,9 @@ export default Ember.Component.extend({
   optionValuePath: null,
   optionLabelPath: null,
   action: Ember.K, // action to fire on change
-  tabindex: -1
+  tabindex: -1,
   
-  attributeBindings: ['tabindex']
+  attributeBindings: ['tabindex'],
 
   // shadow the passed-in `value` to avoid
   // leaking changes to it via a 2-way binding
