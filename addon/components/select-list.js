@@ -9,10 +9,12 @@ export default Ember.Component.extend({
   prompt: null,
   optionValuePath: null,
   optionLabelPath: null,
+  required: false,
+  title: null,
   action: Ember.K, // action to fire on change
   tabindex: -1,
-  
-  attributeBindings: ['tabindex'],
+
+  attributeBindings: ['tabindex', 'required', 'title'],
 
   // shadow the passed-in `value` to avoid
   // leaking changes to it via a 2-way binding

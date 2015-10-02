@@ -144,3 +144,32 @@ test('prompt is one way', function(assert) {
   this.$('select option:selected').val('Second prompt');
   assert.equal(this.$('select option:selected').text().trim(), 'First prompt', 'Prompt change does not propagate up');
 });
+
+test('binds properly to `required` attribute', function(assert) {
+  let options = ['Item A', 'Item B', 'Item C'];
+  this.setProperties({
+    options: options,
+    selection: 'Item A'
+  });
+
+  this.render(hbs`
+    {{select-list content=options value=selection required=true}}
+  `);
+
+  assert.equal(this.$().attr('required'), 'required');
+});
+
+test('binds properly to `title` attribute', function(assert) {
+  let options = ['Item A', 'Item B', 'Item C'],
+    title = 'This tooltip';
+  this.setProperties({
+    options: options,
+    selection: 'Item A'
+  });
+
+  this.render(hbs`
+    {{select-list content=options value=selection title='${title}'}}
+  `);
+
+  assert.equal(this.$().attr('title'), title);
+});

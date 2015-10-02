@@ -37,6 +37,23 @@ can be replaced with
 
 As clear from the markup, the default behavior of the `value` binding is one way. In order to make it two-way, using the `mut` helper is required. Additionally, label and value paths do not require speficying the root element name.
 
+### Using ``required`` and ``title``
+
+This addon supports the attributes ``required`` and ``title`` for HTML5 validation.  For example:
+
+```
+{{select-list
+  required=true
+  title="Please select a liability type from the list"
+  content=liabilityTypes
+  optionValuePath="value"
+  optionLabelPath="label"
+  value=liability.type
+  action=(action (mut liability.type))}}
+```
+
+So long as you do not have ``novalidate`` on your ``<form>``, the form will display the ``title`` value, as specified above, beside the component.  Note that without the ``title``, each browser **will** have a different, **localized** message.
+
 ### Nesting is supported
 
 The following syntax for label and value paths is supported and will work.
