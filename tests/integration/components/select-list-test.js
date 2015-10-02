@@ -183,3 +183,15 @@ test('binds properly to `title` attribute', function(assert) {
 
   assert.equal(this.$('select').attr('title'), title);
 });
+
+test('remains invalid when prompt is selected', function(assert) {
+  var options = [];
+  this.set('options', options);
+  this.set('prompt', 'First prompt');
+
+  this.render(hbs`
+    {{select-list content=options value=selection prompt=prompt}}
+  `);
+
+  assert.equal(this.$('select option:selected')[0].validity.valid, false);
+});
