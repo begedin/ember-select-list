@@ -144,3 +144,42 @@ test('prompt is one way', function(assert) {
   this.$('select option:selected').val('Second prompt');
   assert.equal(this.$('select option:selected').text().trim(), 'First prompt', 'Prompt change does not propagate up');
 });
+
+test('binds properly to `tabindex` attribute', function(assert) {
+  var options = ['Item A', 'Item B', 'Item C'];
+  this.set('options', options);
+  this.set('tabindex', 2);
+
+  this.render(hbs`
+    {{select-list content=options value=selection tabindex=tabindex}}
+  `);
+
+  assert.equal(this.$('select').attr('tabindex'), 2);
+});
+
+test('binds properly to `required` attribute', function(assert) {
+  var options = ['Item A', 'Item B', 'Item C'];
+  this.set('options', options);
+  this.set('selection', 'Item A');
+
+  this.render(hbs`
+    {{select-list content=options value=selection required=true}}
+  `);
+
+  assert.equal(this.$('select').attr('required'), 'required');
+});
+
+test('binds properly to `title` attribute', function(assert) {
+  var options = ['Item A', 'Item B', 'Item C'];
+  var title = 'This tooltip';
+
+  this.set('options', options);
+  this.set('title', title);
+  this.set('selection', 'Item A');
+
+  this.render(hbs`
+    {{select-list content=options value=selection title=title}}
+  `);
+
+  assert.equal(this.$('select').attr('title'), title);
+});
