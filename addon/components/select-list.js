@@ -13,8 +13,9 @@ export default Ember.Component.extend({
   title: null,
   action: Ember.K, // action to fire on change
   tabindex: -1,
+  disabled: null,
 
-  attributeBindings: ['tabindex', 'required', 'title'],
+  attributeBindings: ['tabindex', 'required', 'title', 'disabled'],
 
   // shadow the passed-in `value` to avoid
   // leaking changes to it via a 2-way binding
