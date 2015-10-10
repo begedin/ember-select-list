@@ -183,3 +183,20 @@ test('binds properly to `title` attribute', function(assert) {
 
   assert.equal(this.$('select').attr('title'), title);
 });
+
+test('binds properly to `disabled` attribute', function(assert) {
+  var options = ['Item A', 'Item B', 'Item C'];
+
+  this.set('options', options);
+  this.set('disabled', false);
+  this.set('selection', 'Item A');
+
+  this.render(hbs`
+    {{select-list content=options value=selection disabled=disabled}}
+  `);
+
+  assert.equal(this.$('select').prop('disabled'), false, 'Disabled property is false when bound variable is false');
+
+  this.set('disabled', true);
+  assert.equal(this.$('select').prop('disabled'), true, 'Disabled property is true when bound variable is true');
+});
