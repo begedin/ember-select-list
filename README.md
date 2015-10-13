@@ -53,7 +53,7 @@ The following syntax for label and value paths is supported and will work.
 ```
 
 
-### Not specifying a value or label path wil work
+### Not specifying a value or label path will work
 
 This will work
 
