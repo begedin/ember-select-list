@@ -116,6 +116,7 @@ test('change of option triggers action', function(assert) {
 });
 
 test('prompt is dynamic', function(assert) {
+  assert.expect(2);
   var options = [];
   this.set('options', options);
   this.set('prompt', 'First prompt');
@@ -131,6 +132,7 @@ test('prompt is dynamic', function(assert) {
 });
 
 test('prompt is one way', function(assert) {
+  assert.expect(2);
   var options = [];
   this.set('options', options);
   this.set('prompt', 'First prompt');
@@ -146,6 +148,7 @@ test('prompt is one way', function(assert) {
 });
 
 test('binds properly to `tabindex` attribute', function(assert) {
+  assert.expect(1);
   var options = ['Item A', 'Item B', 'Item C'];
   this.set('options', options);
   this.set('tabindex', 2);
@@ -158,6 +161,7 @@ test('binds properly to `tabindex` attribute', function(assert) {
 });
 
 test('binds properly to `required` attribute', function(assert) {
+  assert.expect(1);
   var options = ['Item A', 'Item B', 'Item C'];
   this.set('options', options);
   this.set('selection', 'Item A');
@@ -170,6 +174,7 @@ test('binds properly to `required` attribute', function(assert) {
 });
 
 test('binds properly to `title` attribute', function(assert) {
+  assert.expect(1);
   var options = ['Item A', 'Item B', 'Item C'];
   var title = 'This tooltip';
 
@@ -185,13 +190,18 @@ test('binds properly to `title` attribute', function(assert) {
 });
 
 test('remains invalid when prompt is selected', function(assert) {
+  assert.expect(2);
   var options = [];
   this.set('options', options);
   this.set('prompt', 'First prompt');
 
   this.render(hbs`
-    {{select-list content=options value=selection prompt=prompt}}
+    {{select-list content=options value=selection prompt=prompt required=true}}
   `);
-
-  assert.equal(this.$('select option:selected')[0].validity.valid, false);
+  assert.equal(this.$('select').prop('required'), true);
+  if (this.$('select option:selected')[0].validity) {
+    assert.equal(this.$('select option:selected')[0].validity.valid, false);
+  } else {
+    assert.equal(this.$('select').val(), null);
+  }
 });
