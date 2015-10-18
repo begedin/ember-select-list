@@ -71,7 +71,7 @@ test('it renders prompt correctly', function(assert) {
   this.render();
 
   assert.equal(this.$('option').length, 1, 'The prompt option is present');
-  assert.equal(this.$('option').attr('value'), undefined, 'The prompt option has no value assigned to it');
+  assert.equal(this.$('option').attr('value'), '', 'The prompt option has no value assigned to it');
   assert.equal(this.$('option').text().trim(), 'test-prompt', 'The prompt option renders the correct text');
   assert.equal(this.$('option').attr('disabled'), 'disabled', 'The prompt option is disabled');
 });
