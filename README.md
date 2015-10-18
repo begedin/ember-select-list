@@ -39,7 +39,7 @@ As clear from the markup, the default behavior of the `value` binding is one way
 
 ### Using attribute bindings
 
-The following attribute bindings are supported: `disabled` (starting in 0.9.4), `tabindex`, `required`, `title`
+The following attribute bindings are supported: `disabled`, `tabindex`, `required`, `title`
 
 
 ### Nesting is supported

@@ -2,9 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.9.4] - no released yetz
+## [0.9.4] - 2015-10-18
 ### Changed
 - [Added support for disabled attribute binding](https://github.com/begedin/ember-select-list/pull/18)
+- [Fixed issue where a select element which has the required attribute and has the prompt selected is considered valid](https://github.com/begedin/ember-select-list/pull/17)
 ### Fixed
 - [When prompt is the selected option, the select element is considered invalid if `required` attribute is 'true'](https://github.com/begedin/ember-select-list/pull/17)
 
