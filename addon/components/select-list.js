@@ -37,7 +37,7 @@ export default Ember.Component.extend({
     const hasPrompt = !!this.get('prompt');
     const contentIndex = hasPrompt ? selectedIndex - 1 : selectedIndex;
 
-    const selection = content[contentIndex];
+    const selection = content.objectAt(contentIndex);
 
     const value = this.attrs.optionValuePath ? Ember.get(selection, this.get('optionValuePath')) : selection;
 
