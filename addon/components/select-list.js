@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   optionLabelPath: null,
   required: false,
   title: null,
-  action: Ember.K, // action to fire on change
+  action() {}, // action to fire on change
   tabindex: -1,
   disabled: null,
 
