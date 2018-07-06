@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { helper as buildHelper } from '@ember/component/helper';
 
-export default Ember.Helper.helper(function([object, path]){
+export default buildHelper(function([object, path]){
   if (path) {
-    return Ember.get(object, path);
+    return get(object, path);
   } else {
     return object;
   }

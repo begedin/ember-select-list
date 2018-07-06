@@ -87,4 +87,4 @@ The action will be triggered when the selection is changed.
 
 ## Ember support
 
-This addon should currently work with ember@1.13.x. It may also work with ember@2.x, but I haven't tested it. Official support for ember@2.x is planned.
+This addon should currently work with ember@2.x, but I haven't tested it.

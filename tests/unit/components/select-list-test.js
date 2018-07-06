@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('select-list', {
@@ -25,17 +25,17 @@ test('it renders with x options when content of length x is provided', function(
   var component = this.subject();
 
   this.render();
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a']);
   });
   assert.equal(this.$('option').length, 1, 'Component is rendered with one option');
 
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a', 'b']);
   });
   assert.equal(this.$('option').length, 2, 'Component is rendered with two options');
 
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a', 'b', 'c']);
   });
   assert.equal(this.$('option').length, 3, 'Component is rendered with three options');
@@ -47,17 +47,17 @@ test('it renders with x+1 options when content of length x is provided', functio
   var component = this.subject({ prompt: 'test-prompt' });
 
   this.render();
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a']);
   });
   assert.equal(this.$('option').length, 2, 'Component is rendered with one option and a prompt on top');
 
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a', 'b']);
   });
   assert.equal(this.$('option').length, 3, 'Component is rendered with two options and a prompt on top');
 
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['a', 'b', 'c']);
   });
   assert.equal(this.$('option').length, 4, 'Component is rendered with three options and a prompt on top');
@@ -82,7 +82,7 @@ test('it renders properly when content of simple strings is provided', function(
   var component = this.subject();
   this.render();
 
-  Ember.run(function() {
+  run(function() {
     component.set('content', ['item']);
   });
 
