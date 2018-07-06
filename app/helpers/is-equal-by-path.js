@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { helper as buildHelper } from '@ember/component/helper';
 
-export default Ember.Helper.helper(function([leftSide, rightSide, path]) {
+export default buildHelper(function([leftSide, rightSide, path]) {
   if (path) {
-    return Ember.get(leftSide, path) === rightSide;
+    return get(leftSide, path) === rightSide;
   } else {
     return leftSide === rightSide;
   }

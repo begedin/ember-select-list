@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   tagName: 'select',
 
@@ -19,7 +21,7 @@ export default Ember.Component.extend({
 
   // shadow the passed-in `value` to avoid
   // leaking changes to it via a 2-way binding
-  _selection: Ember.computed.reads('value'),
+  _selection: reads('value'),
 
   init() {
     this._super(...arguments);
@@ -39,7 +41,7 @@ export default Ember.Component.extend({
 
     const selection = content[contentIndex];
 
-    const value = this.attrs.optionValuePath ? Ember.get(selection, this.get('optionValuePath')) : selection;
+    const value = this.attrs.optionValuePath ? get(selection, this.get('optionValuePath')) : selection;
 
     // set the local, shadowed selection to avoid leaking
     // changes to `selection` out via 2-way binding
