@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   optionLabelPath: null,
   required: false,
   title: null,
-  action: Ember.K, // action to fire on change
+  action() {}, // action to fire on change
   tabindex: -1,
   disabled: null,
 
@@ -21,7 +21,7 @@ export default Ember.Component.extend({
   // leaking changes to it via a 2-way binding
   _selection: Ember.computed.reads('value'),
 
-  didInitAttrs() {
+  init() {
     this._super(...arguments);
     if (!this.get('content')) {
       this.set('content', []);
