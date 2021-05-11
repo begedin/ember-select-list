@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.6-rc.1] - 2021-05-11
+
+### Changed
+- Experimental support for ember 2
 ## [0.9.5] - 2015-11-05
 ### Changed
 - Updated ember-cli dependency to 1.13.8
